@@ -43,8 +43,11 @@ export type TCoordinates = {
 export enum ETypesName {
     FETCH_SATELLITES = "FETCH_SATELLITES",
     FETCH_SATELLITES_SUCCESS = "FETCH_SATELLITES_SUCCESS",
+    FETCH_SATELLITES_LOADING = "FETCH_SATELLITES_LOADING",
 }
 
 export type TFetchSatellites = Action<ETypesName.FETCH_SATELLITES> & {}
 
 export type TFetchSatellitesSuccess = Action<ETypesName.FETCH_SATELLITES_SUCCESS> & { listOfsatellites: TSatellite[] }
+
+export type TFetchSatellitesLoading = Action<ETypesName.FETCH_SATELLITES_LOADING> & { isLoading: boolean }

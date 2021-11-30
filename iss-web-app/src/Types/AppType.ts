@@ -11,3 +11,7 @@ export type TPersistConfig = {
     whitelist?: string[]
     blacklist?: string[]
 }
+
+export type TSystemMessage = {
+    [key: string]: (response: string, duration?: number) => void
+}
