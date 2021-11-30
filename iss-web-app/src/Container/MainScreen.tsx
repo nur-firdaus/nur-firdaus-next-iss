@@ -67,21 +67,19 @@ const MainScreen: React.FC<TProps> = (props) => {
     }, [listOfsatellites])
 
     function onGetDateValue(value: any) {
-        const valueTimeStamp = moment(value).unix()
-        const mDate = moment.utc(value).local()
+        let valueTimeStamp: number = Number(moment(value).unix().toString())
         //1 min = 6000 timestamp
         //6000*50min=300000
-        const earlyTimeStamp = valueTimeStamp - 6000 * 50
-
+        let earlyTimeStamp: number = valueTimeStamp - 300000
         processTimeZone(earlyTimeStamp)
     }
 
     const processTimeZone = async (ts: number) => {
         let text = ""
         for (let i = 0; i < 10; i++) {
-            text += ts + ","
+            let incrementTs = ts + 300000 * (i + 1)
+            text += `${incrementTs},`
         }
-        console.log(text)
         fetchLocationBasedTimeZone(text)
     }
 
