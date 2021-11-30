@@ -1,0 +1,21 @@
+export const INITIAL_STATE = {
+    isLoading: false,
+    listOfsatellites: [],
+    satelliteDetails: {
+        id: 0,
+        name: "",
+        latitude: 0,
+        longitude: 0,
+        altitude: 0,
+        velocity: 0,
+        visibility: "",
+        footprint: 0,
+        timestamp: 0,
+        daynum: 0,
+        solar_lat: 0,
+        solar_lon: 0,
+        units: "",
+    },
+    satellitesDetails: [],
+    coordinates: { latitude: 0, longitude: 0, timezone_id: "", offset: 0, country_code: "", map_url: "" },
+}
