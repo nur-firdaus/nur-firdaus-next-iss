@@ -69,8 +69,6 @@ const MainScreen: React.FC<TProps> = (props) => {
     function onGetDateValue(value: any) {
         const valueTimeStamp = moment(value).unix()
         const mDate = moment.utc(value).local()
-        console.log("onOk: ", value, mDate)
-        console.log("ts: ", valueTimeStamp)
         //1 min = 6000 timestamp
         //6000*50min=300000
         const earlyTimeStamp = valueTimeStamp - 6000 * 50
@@ -98,11 +96,7 @@ const MainScreen: React.FC<TProps> = (props) => {
         setLoading(false)
     }
 
-    console.log(listOfsatellites)
-    console.log(satelliteDetails)
-
     const { Header, Content, Footer } = Layout
-    const { TabPane } = Tabs
 
     const columns: any = [
         {
