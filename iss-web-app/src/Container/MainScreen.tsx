@@ -17,6 +17,7 @@ type TProps = {}
 
 const MainScreen: React.FC<TProps> = (props) => {
     const [loading, setLoading] = useState(false)
+    const [urlLocation, setUrlLocation] = useState("https://maps.google.com/maps?q=37.795517,-122.393693&z=4")
     const [listOfsatellites, setListOfsatellites] = useState<TSatellite[]>([])
     const [satelliteDetails, setSatelliteDetails] = useState<TSatelliteDetails>({
         id: 0,
@@ -57,6 +58,7 @@ const MainScreen: React.FC<TProps> = (props) => {
         const fetchData = async () => {
             try {
                 const { data: response } = await axios.get(`https://api.wheretheiss.at/v1/satellites/${listOfsatellites[0].id}`)
+                fetchLocation(response)
                 setSatelliteDetails(response)
             } catch (error: any) {
                 console.error(error.message)
@@ -64,7 +66,7 @@ const MainScreen: React.FC<TProps> = (props) => {
         }
 
         fetchData()
-    }, [listOfsatellites, satelliteDetails])
+    }, [listOfsatellites]) // [listOfsatellites, satelliteDetails]) to make continuous fetching but the API does not support it will return 429 error code
 
     function onGetDateValue(value: any) {
         let valueTimeStamp: number = Number(moment(value).unix().toString())
@@ -94,6 +96,15 @@ const MainScreen: React.FC<TProps> = (props) => {
         setLoading(false)
     }
 
+    const fetchLocation = async (data: TSatelliteDetails) => {
+        try {
+            const { data: response } = await axios.get(`https://api.wheretheiss.at/v1/coordinates/${data.latitude},${data.longitude}`)
+            setUrlLocation(response.map_url)
+        } catch (error: any) {
+            console.error(error.message)
+        }
+    }
+
     const { Header, Content, Footer } = Layout
 
     return (
@@ -110,10 +121,16 @@ const MainScreen: React.FC<TProps> = (props) => {
                         </Breadcrumb>
                         <div className="site-layout-content">
                             <Card title="ISS LOCATION">
-                                <JSONPretty id="json-pretty" data={satelliteDetails}></JSONPretty>
-                                <div className="google-map-code">
-                                    <iframe src={`https://maps.google.com/maps?q=37.795517,-122.393693&z=4&output=embed`}></iframe>
-                                </div>
+                                <Row justify={"space-between"}>
+                                    <Col>
+                                        <JSONPretty id="json-pretty" data={satelliteDetails}></JSONPretty>
+                                    </Col>
+                                    <Col>
+                                        <div className="google-map-code">
+                                            <iframe src={`${urlLocation}&output=embed`}></iframe>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </Card>
                             <Card title="Getting the location of the ISS at a specific time">
                                 <DatePicker onOk={onGetDateValue} bordered={true} showTime={true} suffixIcon="" format={"DD-MM-Y HH:mm:ss"} />
