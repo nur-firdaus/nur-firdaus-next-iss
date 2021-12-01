@@ -110,10 +110,10 @@ const TableScreen: React.FC<TProps> = (props) => {
     const handleOnReply = () => {
         setOpenModal(false)
     }
+
     return (
         <>
-            <ModalScreen visible={openModal} onCancel={handleOnClose} onOk={handleOnReply} />
-
+            {openModal === true && <ModalScreen visible={openModal} onCancel={handleOnClose} onOk={handleOnReply} data={selectedRow as TSatelliteDetails} />}
             <Card title="Result">
                 <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={props.data} />,
             </Card>

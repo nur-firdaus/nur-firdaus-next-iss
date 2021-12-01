@@ -41,6 +41,8 @@ const MainScreen: React.FC<TProps> = (props) => {
             setLoading(true)
             try {
                 const { data: response } = await axios.get("https://api.wheretheiss.at/v1/satellites")
+
+                console.log(response)
                 setListOfsatellites(response)
             } catch (error: any) {
                 console.error(error.message)
@@ -110,7 +112,7 @@ const MainScreen: React.FC<TProps> = (props) => {
                             <Card title="ISS LOCATION">
                                 <JSONPretty id="json-pretty" data={satelliteDetails}></JSONPretty>
                                 <div className="google-map-code">
-                                    <iframe src="https://maps.google.com/maps?q=37.795517,-122.393693&z=4"></iframe>
+                                    <iframe src={`https://maps.google.com/maps?q=37.795517,-122.393693&z=4&output=embed`}></iframe>
                                 </div>
                             </Card>
                             <Card title="Getting the location of the ISS at a specific time">
