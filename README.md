@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Your PC need to have node.js environment with npmjs
+https://nodejs.org/en/
+https://www.npmjs.com/
+
+The web app use antd component for the ui, react hook for state managment and axio for api calling
+
+
 ## Available Scripts
 
 In the project directory, you can run:
