@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux"
 import ReactDOM from "react-dom"
 import "antd/dist/antd.css"
 import "./index.css"
-import Action from "../Redux/Actions"
 import { TSatellite, TSatelliteDetails } from "../Types/Setellites"
 
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons"
