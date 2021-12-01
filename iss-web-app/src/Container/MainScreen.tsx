@@ -94,75 +94,6 @@ const MainScreen: React.FC<TProps> = (props) => {
 
     const { Header, Content, Footer } = Layout
 
-    const columns: any = [
-        {
-            title: "latitude",
-            dataIndex: "latitude",
-            key: "latitude",
-            render: (value: any, record: TSatelliteDetails) => <>{record.latitude}</>,
-        },
-        {
-            title: "longitude",
-            dataIndex: "longitude",
-            key: "longitude",
-            render: (value: any, record: TSatelliteDetails) => <>{record.longitude}</>,
-        },
-        {
-            title: "altitude",
-            dataIndex: "altitude",
-            key: "altitude",
-            render: (value: any, record: TSatelliteDetails) => <>{record.altitude}</>,
-        },
-        {
-            title: "velocity",
-            dataIndex: "velocity",
-            key: "velocity",
-            render: (value: any, record: TSatelliteDetails) => <>{record.velocity}</>,
-        },
-        {
-            title: "visibility",
-            dataIndex: "visibility",
-            key: "visibility",
-            render: (value: any, record: TSatelliteDetails) => <>{record.visibility}</>,
-        },
-        {
-            title: "footprint",
-            dataIndex: "footprint",
-            key: "footprint",
-            render: (value: any, record: TSatelliteDetails) => <>{record.footprint}</>,
-        },
-        {
-            title: "timestamp",
-            dataIndex: "timestamp",
-            key: "timestamp",
-            render: (value: any, record: TSatelliteDetails) => <>{record.timestamp}</>,
-        },
-        {
-            title: "daynum",
-            dataIndex: "daynum",
-            key: "daynum",
-            render: (value: any, record: TSatelliteDetails) => <>{record.daynum}</>,
-        },
-        {
-            title: "solar_lat",
-            dataIndex: "solar_lat",
-            key: "solar_lat",
-            render: (value: any, record: TSatelliteDetails) => <>{record.solar_lat}</>,
-        },
-        {
-            title: "solar_lon",
-            dataIndex: "solar_lon",
-            key: "solar_lon",
-            render: (value: any, record: TSatelliteDetails) => <>{record.solar_lon}</>,
-        },
-        {
-            title: "units",
-            dataIndex: "units",
-            key: "units",
-            render: (value: any, record: TSatelliteDetails) => <>{record.units}</>,
-        },
-    ]
-
     return (
         <>
             <Spin spinning={loading}>
@@ -178,6 +109,9 @@ const MainScreen: React.FC<TProps> = (props) => {
                         <div className="site-layout-content">
                             <Card title="ISS LOCATION">
                                 <JSONPretty id="json-pretty" data={satelliteDetails}></JSONPretty>
+                                <div className="google-map-code">
+                                    <iframe src="https://maps.google.com/maps?q=37.795517,-122.393693&z=4"></iframe>
+                                </div>
                             </Card>
                             <Card title="Getting the location of the ISS at a specific time">
                                 <DatePicker onOk={onGetDateValue} bordered={true} showTime={true} suffixIcon="" format={"DD-MM-Y HH:mm:ss"} />

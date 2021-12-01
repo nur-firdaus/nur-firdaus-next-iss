@@ -7,12 +7,16 @@ import ReactDOM from "react-dom"
 import "antd/dist/antd.css"
 import "./index.css"
 import { TSatelliteDetails } from "../Types/Setellites"
+import ModalScreen from "./ModalScreen"
 
 type TProps = {
     data: TSatelliteDetails[]
 }
 
 const TableScreen: React.FC<TProps> = (props) => {
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [selectedRow, setSelectedRow] = useState<TSatelliteDetails>()
+
     const columns: any = [
         {
             title: "Location",
@@ -20,7 +24,7 @@ const TableScreen: React.FC<TProps> = (props) => {
             key: "Location",
             render: (value: any, record: TSatelliteDetails) => (
                 <>
-                    <Button type="primary" block>
+                    <Button onClick={() => onClickView(record)} type="primary" block>
                         View
                     </Button>
                 </>
@@ -94,9 +98,22 @@ const TableScreen: React.FC<TProps> = (props) => {
         },
     ]
 
-    const onClickView = () => {}
+    const onClickView = (record: TSatelliteDetails) => {
+        setOpenModal(true)
+        setSelectedRow(record)
+    }
+
+    const handleOnClose = () => {
+        setOpenModal(false)
+    }
+
+    const handleOnReply = () => {
+        setOpenModal(false)
+    }
     return (
         <>
+            <ModalScreen visible={openModal} onCancel={handleOnClose} onOk={handleOnReply} />
+
             <Card title="Result">
                 <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={props.data} />,
             </Card>
