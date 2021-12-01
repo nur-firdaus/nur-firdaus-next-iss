@@ -11,6 +11,7 @@ import { TSatellite, TSatelliteDetails } from "../Types/Setellites"
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons"
 import JSONPretty from "react-json-pretty"
 import moment from "moment"
+import TableScreen from "./TableScreen"
 
 type TProps = {}
 
@@ -183,9 +184,7 @@ const MainScreen: React.FC<TProps> = (props) => {
                             <Card title="Getting the location of the ISS at a specific time">
                                 <DatePicker onOk={onGetDateValue} bordered={true} showTime={true} suffixIcon="" format={"DD-MM-Y HH:mm:ss"} />
                             </Card>
-                            <Card title="Result">
-                                <Table scroll={{ x: 1500, y: 300 }} columns={columns} dataSource={satellitesDetails} />,
-                            </Card>
+                            <TableScreen data={satellitesDetails} />
                         </div>
                     </Content>
                     <Footer style={{ textAlign: "center" }}>Nur Firdaus ©2021 Created Using React.JS</Footer>
