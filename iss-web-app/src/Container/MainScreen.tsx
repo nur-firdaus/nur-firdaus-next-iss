@@ -53,18 +53,16 @@ const MainScreen: React.FC<TProps> = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true)
             try {
                 const { data: response } = await axios.get(`https://api.wheretheiss.at/v1/satellites/${listOfsatellites[0].id}`)
                 setSatelliteDetails(response)
             } catch (error: any) {
                 console.error(error.message)
             }
-            setLoading(false)
         }
 
         fetchData()
-    }, [listOfsatellites])
+    }, [listOfsatellites, satelliteDetails])
 
     function onGetDateValue(value: any) {
         let valueTimeStamp: number = Number(moment(value).unix().toString())

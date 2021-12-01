@@ -15,6 +15,18 @@ type TProps = {
 const TableScreen: React.FC<TProps> = (props) => {
     const columns: any = [
         {
+            title: "Location",
+            dataIndex: "Location",
+            key: "Location",
+            render: (value: any, record: TSatelliteDetails) => (
+                <>
+                    <Button type="primary" block>
+                        View
+                    </Button>
+                </>
+            ),
+        },
+        {
             title: "latitude",
             dataIndex: "latitude",
             key: "latitude",
@@ -82,6 +94,7 @@ const TableScreen: React.FC<TProps> = (props) => {
         },
     ]
 
+    const onClickView = () => {}
     return (
         <>
             <Card title="Result">
